@@ -4,11 +4,11 @@ import Link from "next/link";
 function Logo() {
   return (
     <div className="flex items-center gap-3">
-      <Link href="/">
+      <Link href="/" className="flex items-center gap-3">
         <Image
           src="/logo.png"
-          width={80}
-          height={80}
+          width={50}
+          height={50}
           alt="LuxDrive Logo"
           className="rounded-full"
         />

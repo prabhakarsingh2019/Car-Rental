@@ -35,7 +35,7 @@ async function Home() {
         <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-8">
           <div className="z-20 rounded-xl overflow-hidden shadow-xl">
             <Image
-              src={bg}
+              src={"/car1.jpg"}
               alt="Ferrari"
               width={500}
               height={300}
