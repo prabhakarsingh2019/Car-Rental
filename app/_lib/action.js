@@ -79,7 +79,6 @@ export async function createBooking(formData) {
         created_at: new Date().toISOString(),
       },
     ]);
-    console.log(isPayed);
 
     const { data: payData, error: paymentErr } = await supabase
       .from("payments")

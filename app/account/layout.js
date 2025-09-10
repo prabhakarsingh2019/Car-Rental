@@ -1,7 +1,4 @@
 import AsideNav from "../_components/AsideNav";
-import ProfileHeader from "../_components/ProfileHeader";
-import { auth } from "../_lib/auth";
-import { getCustomer } from "../_lib/data-storage";
 
 async function page({ children }) {
   return (

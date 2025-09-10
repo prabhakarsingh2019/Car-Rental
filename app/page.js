@@ -1,6 +1,6 @@
 import Image from "next/image";
 import bg from "../public/bg.jpg";
-import { auth } from "./_lib/auth";
+import Link from "next/link";
 
 async function Home() {
   return (
@@ -26,9 +26,12 @@ async function Home() {
         <p className="text-brand-300 drop-shadow-md">
           🚗 Trusted by 10,000+ customers worldwide
         </p>
-        <button className=" z-20 bg-accent-500 hover:bg-accent-600 text-white px-5 py-3 rounded-lg shadow-md mt-8">
+        <Link
+          href="/cars"
+          className=" z-20 bg-accent-500 hover:bg-accent-600 text-white px-5 py-3 rounded-lg shadow-md mt-8"
+        >
           Book now
-        </button>
+        </Link>
         <div className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-8">
           <div className="z-20 rounded-xl overflow-hidden shadow-xl">
             <Image

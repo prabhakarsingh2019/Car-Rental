@@ -6,8 +6,7 @@ import { getCustomer } from "../_lib/data-storage";
 async function page({ children }) {
   const session = await auth();
   const customer = await getCustomer(session?.user.email);
-  console.log(customer);
-  console.log(session);
+
   return <ProfileHeader user={session.user} customer={customer} />;
 }
 

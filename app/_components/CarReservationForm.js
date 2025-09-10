@@ -193,7 +193,7 @@ export default function CarReservationForm({ car, user }) {
 
         <div>
           <label className="block text-sm text-brand-300 mb-1">
-            Driver’s License Number
+            Driver&apos;s License Number
           </label>
           <input
             type="text"
@@ -227,12 +227,78 @@ export default function CarReservationForm({ car, user }) {
       </form>
 
       {showPaymentModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-lg w-96">
-            <h3 className="text-lg font-bold mb-4">Dummy Payment</h3>
-            <p className="mb-4">
-              Pay ${totalPrice} using {formData.paymentMethod}
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+          <div className="bg-brand-800 p-6 rounded-lg w-96 shadow-lg space-y-4">
+            <h3 className="text-lg font-bold">
+              Payment - {formData.paymentMethod}
+            </h3>
+            <p className="text-sm text-gray-600">
+              Pay <span className="font-semibold">${totalPrice}</span> using{" "}
+              {formData.paymentMethod.toUpperCase()}
             </p>
+
+            {formData.paymentMethod === "credit-card" && (
+              <div className="space-y-3">
+                <input
+                  type="text"
+                  placeholder="Card Number"
+                  required
+                  className="w-full px-3 py-2 border rounded"
+                />
+                <div className="flex space-x-2">
+                  <input
+                    type="text"
+                    placeholder="MM/YY"
+                    required
+                    className="w-1/2 px-3 py-2 border rounded"
+                  />
+                  <input
+                    type="text"
+                    placeholder="CVV"
+                    required
+                    className="w-1/2 px-3 py-2 border rounded"
+                  />
+                </div>
+                <input
+                  type="text"
+                  placeholder="Cardholder Name"
+                  required
+                  className="w-full px-3 py-2 border rounded"
+                />
+              </div>
+            )}
+
+            {formData.paymentMethod === "debit-card" && (
+              <div className="space-y-3 ">
+                <input
+                  type="text"
+                  placeholder="Card Number"
+                  required
+                  className="w-full px-3 py-2 border rounded"
+                />
+                <input
+                  type="text"
+                  placeholder="ATM PIN"
+                  required
+                  className="w-full px-3 py-2 border rounded"
+                />
+              </div>
+            )}
+
+            {formData.paymentMethod === "upi" && (
+              <div className="space-y-3">
+                <input
+                  type="text"
+                  placeholder="Enter UPI ID (e.g. user@upi)"
+                  className="w-full px-3 py-2 border rounded"
+                  required
+                />
+                <p className="text-xs text-gray-500">
+                  You will receive a request in your UPI app.
+                </p>
+              </div>
+            )}
+
             <button
               onClick={handleDummyPayment}
               disabled={loadingPayment}
@@ -240,6 +306,7 @@ export default function CarReservationForm({ car, user }) {
             >
               {loadingPayment ? "Processing..." : "Pay Now"}
             </button>
+
             <button
               onClick={() => setShowPaymentModal(false)}
               disabled={loadingPayment}
