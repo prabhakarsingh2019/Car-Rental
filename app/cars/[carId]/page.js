@@ -18,19 +18,31 @@ async function Page({ params }) {
     getReviewsByCarId(carId),
     getBookedDates(carId),
   ]);
-  console.log(bookedDates);
+
   if (!car) {
-    return <div className="text-center py-20">Car not found</div>;
+    return (
+      <div className="text-center py-20 text-brand-100">Car not found</div>
+    );
   }
 
   return (
-    <main className="min-h-screen bg-brand-900 py-12 px-6">
+    <main className="min-h-screen bg-brand-900 py-8 px-4 sm:py-12 sm:px-6 lg:px-12 space-y-12">
       <CarDetails car={car} />
+
       <CarReservationProvider>
-        <DatePicker bookedRanges={bookedDates} />
-        <CarReservationForm car={car} user={session?.user} />
+        <div className="flex flex-col lg:flex-row lg:items-start lg:gap-8 space-y-6 lg:space-y-0">
+          <div className="lg:flex-1">
+            <DatePicker bookedRanges={bookedDates} />
+          </div>
+          <div className="lg:flex-1">
+            <CarReservationForm car={car} user={session?.user} />
+          </div>
+        </div>
       </CarReservationProvider>
-      <ReviewList reviews={reviews} />
+
+      <div className="max-w-6xl mx-auto">
+        <ReviewList reviews={reviews} />
+      </div>
     </main>
   );
 }

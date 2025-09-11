@@ -49,7 +49,6 @@ export default function CarReservationForm({ car, user }) {
   async function handleBooking() {
     try {
       const bookingData = await createBooking(data);
-      console.log(bookingData);
       resetRange();
       router.push(`/thank-you?bookingId=${bookingData}`);
       toast.success("Booking successful!");
@@ -70,11 +69,9 @@ export default function CarReservationForm({ car, user }) {
   async function handleDummyPayment() {
     setLoadingPayment(true);
     toast.info("Processing payment...");
-
     setTimeout(async () => {
       setLoadingPayment(false);
       setShowPaymentModal(false);
-
       const success = Math.random() > 0.2;
       if (success) {
         toast.success("Payment successful!");
@@ -86,91 +83,114 @@ export default function CarReservationForm({ car, user }) {
   }
 
   return (
-    <div className="bg-brand-800 p-6 rounded-lg mt-8 space-y-4">
-      <h2 className="text-xl font-bold text-accent-400">Book this Car</h2>
+    <div className="bg-brand-800 p-4 sm:p-6 rounded-lg mt-6 space-y-4 max-w-2xl mx-auto">
+      <h2 className="text-xl font-bold text-accent-400 text-center sm:text-left">
+        Book this Car
+      </h2>
 
       {startDate && endDate ? (
-        <p className="text-sm text-brand-300">
+        <p className="text-sm text-brand-300 text-center sm:text-left">
           {numDays} days * ${price_per_day} ={" "}
           <span className="font-semibold text-accent-500">${totalPrice}</span>
         </p>
       ) : (
-        <p className="text-sm text-brand-400">
+        <p className="text-sm text-brand-400 text-center sm:text-left">
           Select dates above to see price
         </p>
       )}
 
       <form
-        action={async (e) => {
+        onSubmit={async (e) => {
+          e.preventDefault();
           await handleSubmit();
         }}
         className="space-y-4"
       >
-        <div>
-          <label className="block text-sm text-brand-300 mb-1">Full Name</label>
-          <input
-            type="text"
-            name="name"
-            disabled
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 rounded-md bg-brand-700 text-white disabled:cursor-not-allowed"
-          />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label className="block text-sm text-brand-300 mb-1">
+              Full Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              disabled
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 rounded-md bg-brand-700 text-white disabled:cursor-not-allowed"
+            />
+          </div>
+          <div>
+            <label className="block text-sm text-brand-300 mb-1">Email</label>
+            <input
+              type="email"
+              name="email"
+              disabled
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 rounded-md bg-brand-700 text-white disabled:cursor-not-allowed"
+            />
+          </div>
         </div>
 
-        <div>
-          <label className="block text-sm text-brand-300 mb-1">Email</label>
-          <input
-            type="email"
-            name="email"
-            disabled
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 rounded-md bg-brand-700 text-white disabled:cursor-not-allowed"
-          />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label className="block text-sm text-brand-300 mb-1">
+              Phone Number
+            </label>
+            <input
+              type="tel"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 rounded-md bg-brand-700 text-white"
+            />
+          </div>
+          <div>
+            <label className="block text-sm text-brand-300 mb-1">
+              Driver&apos;s License Number
+            </label>
+            <input
+              type="text"
+              name="driversLicense"
+              value={formData.driversLicense}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 rounded-md bg-brand-700 text-white"
+            />
+          </div>
         </div>
 
-        <div>
-          <label className="block text-sm text-brand-300 mb-1">
-            Phone Number
-          </label>
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 rounded-md bg-brand-700 text-white"
-          />
-        </div>
-        <div>
-          <label className="block text-sm text-brand-300 mb-1">
-            Pickup Location
-          </label>
-          <input
-            type="text"
-            name="pickupLocation"
-            value={formData.pickupLocation}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 rounded-md bg-brand-700 text-white"
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm text-brand-300 mb-1">
-            Dropoff Location
-          </label>
-          <input
-            type="text"
-            name="dropoffLocation"
-            value={formData.dropoffLocation}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 rounded-md bg-brand-700 text-white"
-          />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div>
+            <label className="block text-sm text-brand-300 mb-1">
+              Pickup Location
+            </label>
+            <input
+              type="text"
+              name="pickupLocation"
+              value={formData.pickupLocation}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 rounded-md bg-brand-700 text-white"
+            />
+          </div>
+          <div>
+            <label className="block text-sm text-brand-300 mb-1">
+              Dropoff Location
+            </label>
+            <input
+              type="text"
+              name="dropoffLocation"
+              value={formData.dropoffLocation}
+              onChange={handleChange}
+              required
+              className="w-full px-3 py-2 rounded-md bg-brand-700 text-white"
+            />
+          </div>
         </div>
 
         <div>
@@ -191,19 +211,6 @@ export default function CarReservationForm({ car, user }) {
           </select>
         </div>
 
-        <div>
-          <label className="block text-sm text-brand-300 mb-1">
-            Driver&apos;s License Number
-          </label>
-          <input
-            type="text"
-            name="driversLicense"
-            value={formData.driversLicense}
-            onChange={handleChange}
-            required
-            className="w-full px-3 py-2 rounded-md bg-brand-700 text-white"
-          />
-        </div>
         <div>
           <label className="block text-sm text-brand-300 mb-1">
             Purpose of Booking (optional)
@@ -227,8 +234,8 @@ export default function CarReservationForm({ car, user }) {
       </form>
 
       {showPaymentModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-brand-800 p-6 rounded-lg w-96 shadow-lg space-y-4">
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50 p-4 overflow-auto">
+          <div className="bg-brand-800 p-6 rounded-lg w-full max-w-md shadow-lg space-y-4">
             <h3 className="text-lg font-bold">
               Payment - {formData.paymentMethod}
             </h3>
@@ -237,7 +244,8 @@ export default function CarReservationForm({ car, user }) {
               {formData.paymentMethod.toUpperCase()}
             </p>
 
-            {formData.paymentMethod === "credit-card" && (
+            {(formData.paymentMethod === "credit-card" ||
+              formData.paymentMethod === "debit-card") && (
               <div className="space-y-3">
                 <input
                   type="text"
@@ -245,43 +253,38 @@ export default function CarReservationForm({ car, user }) {
                   required
                   className="w-full px-3 py-2 border rounded"
                 />
-                <div className="flex space-x-2">
+                {formData.paymentMethod === "credit-card" && (
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      placeholder="MM/YY"
+                      required
+                      className="w-1/2 px-3 py-2 border rounded"
+                    />
+                    <input
+                      type="text"
+                      placeholder="CVV"
+                      required
+                      className="w-1/2 px-3 py-2 border rounded"
+                    />
+                  </div>
+                )}
+                {formData.paymentMethod === "credit-card" && (
                   <input
                     type="text"
-                    placeholder="MM/YY"
+                    placeholder="Cardholder Name"
                     required
-                    className="w-1/2 px-3 py-2 border rounded"
+                    className="w-full px-3 py-2 border rounded"
                   />
+                )}
+                {formData.paymentMethod === "debit-card" && (
                   <input
                     type="text"
-                    placeholder="CVV"
+                    placeholder="ATM PIN"
                     required
-                    className="w-1/2 px-3 py-2 border rounded"
+                    className="w-full px-3 py-2 border rounded"
                   />
-                </div>
-                <input
-                  type="text"
-                  placeholder="Cardholder Name"
-                  required
-                  className="w-full px-3 py-2 border rounded"
-                />
-              </div>
-            )}
-
-            {formData.paymentMethod === "debit-card" && (
-              <div className="space-y-3 ">
-                <input
-                  type="text"
-                  placeholder="Card Number"
-                  required
-                  className="w-full px-3 py-2 border rounded"
-                />
-                <input
-                  type="text"
-                  placeholder="ATM PIN"
-                  required
-                  className="w-full px-3 py-2 border rounded"
-                />
+                )}
               </div>
             )}
 

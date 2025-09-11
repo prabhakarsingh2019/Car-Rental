@@ -17,27 +17,25 @@ export default async function ThankYouPage({ searchParams }) {
   }
 
   return (
-    <div className="min-h-screen bg-brand-800 flex items-center justify-center px-4">
-      <div className="bg-brand-900 shadow-lg rounded-2xl p-8 max-w-2xl w-full border border-brand-700">
+    <div className="min-h-screen bg-brand-800 flex items-center justify-center px-4 py-8">
+      <div className="bg-brand-900 shadow-lg rounded-2xl p-6 sm:p-8 max-w-xl w-full border border-brand-700">
         <div className="flex items-center gap-3 mb-6">
-          <div className="h-12 w-12 flex items-center justify-center rounded-full bg-success-100 text-success-600">
+          <div className="h-10 w-10 sm:h-12 sm:w-12 flex items-center justify-center rounded-full bg-success-100 text-success-600 text-lg sm:text-xl">
             ✓
           </div>
-          <h1 className="text-2xl font-bold text-brand-100">
+          <h1 className="text-xl sm:text-2xl font-bold text-brand-100">
             Booking Confirmed!
           </h1>
         </div>
-
-        <p className="text-brand-100 mb-4">
+        <p className="text-brand-100 mb-4 text-sm sm:text-base">
           Thank you,{" "}
           <span className="font-semibold text-accent-800">
             {session?.user?.name || "Guest"}
           </span>
           . Your booking has been successfully created.
         </p>
-
-        <div className="bg-brand-600 rounded-xl p-6 space-y-3">
-          <h2 className="text-lg font-semibold text-brand-950 mb-2">
+        <div className="bg-brand-600 rounded-xl p-4 sm:p-6 space-y-2 sm:space-y-3 text-sm sm:text-base">
+          <h2 className="text-base sm:text-lg font-semibold text-brand-950 mb-2">
             Booking Details
           </h2>
           <p>
@@ -77,9 +75,8 @@ export default async function ThankYouPage({ searchParams }) {
             </span>
           </p>
         </div>
-
         <div className="mt-6 text-center">
-          <p className="text-accent-500 text-sm">
+          <p className="text-accent-500 text-xs sm:text-sm">
             A confirmation has been sent to your registered email.
           </p>
         </div>

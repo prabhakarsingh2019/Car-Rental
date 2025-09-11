@@ -42,19 +42,21 @@ export default function CarFilters() {
   };
 
   return (
-    <div>
+    <div className="relative">
       <button
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-brand-700 text-white rounded-lg shadow hover:bg-brand-800 transition"
+        className="px-4 py-2 bg-brand-700 text-white rounded-lg shadow hover:bg-brand-800 transition w-full sm:w-auto"
       >
         Filters
       </button>
+
       {isOpen && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-          <div className="bg-neutral-50 rounded-2xl shadow-2xl w-[90%] max-w-md p-6 space-y-6 border border-neutral-200">
-            <h2 className="text-xl font-semibold text-brand-800">
+        <div className="fixed inset-0 bg-black/40 flex items-start sm:items-center justify-center z-50 overflow-auto py-10 sm:py-0">
+          <div className="bg-neutral-50 rounded-2xl shadow-2xl w-full sm:w-[90%] max-w-md p-6 space-y-6 border border-neutral-200 mx-4 sm:mx-0">
+            <h2 className="text-xl font-semibold text-brand-800 text-center sm:text-left">
               Filter Cars
             </h2>
+
             {Object.entries(filtersObj).map(([filterKey, options]) => (
               <div key={filterKey}>
                 <h3 className="font-medium mb-2 capitalize text-brand-700">
@@ -67,7 +69,7 @@ export default function CarFilters() {
                       <button
                         key={label}
                         onClick={() => updateQuery(filterKey, value)}
-                        className={`px-3 py-1 rounded-full border transition ${
+                        className={`px-3 py-1 rounded-full border transition text-sm sm:text-base ${
                           active
                             ? "bg-accent-500 text-white border-accent-600 shadow-md"
                             : "bg-neutral-100 text-brand-700 border-neutral-300 hover:bg-neutral-200"
@@ -81,10 +83,10 @@ export default function CarFilters() {
               </div>
             ))}
 
-            <div className="flex justify-end gap-3 pt-4 border-t border-neutral-200">
+            <div className="flex flex-col sm:flex-row justify-end gap-3 pt-4 border-t border-neutral-200">
               <button
                 onClick={() => setIsOpen(false)}
-                className="px-4 py-2 rounded-lg border border-neutral-300 text-brand-700 hover:bg-neutral-100 transition"
+                className="px-4 py-2 rounded-lg border border-neutral-300 text-brand-700 hover:bg-neutral-100 transition w-full sm:w-auto"
               >
                 Close
               </button>
@@ -93,7 +95,7 @@ export default function CarFilters() {
                   setIsOpen(false);
                   router.push("?"); // reset filters
                 }}
-                className="px-4 py-2 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 transition"
+                className="px-4 py-2 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 transition w-full sm:w-auto"
               >
                 Reset
               </button>
