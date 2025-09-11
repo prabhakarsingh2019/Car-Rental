@@ -9,6 +9,7 @@ import DatePicker from "@/app/_components/DatePicker";
 import { CarReservationProvider } from "@/app/_components/CarReservationContext";
 import CarReservationForm from "@/app/_components/CarReservationForm";
 import { auth } from "@/app/_lib/auth";
+import CarReviewForm from "@/app/_components/Reviews/CarReviewForm";
 
 async function Page({ params }) {
   const { carId } = await params;
@@ -41,6 +42,7 @@ async function Page({ params }) {
       </CarReservationProvider>
 
       <div className="max-w-6xl mx-auto">
+        <CarReviewForm carId={car.id} customerId={session?.user.customerId} />
         <ReviewList reviews={reviews} />
       </div>
     </main>

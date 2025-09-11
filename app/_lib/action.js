@@ -107,6 +107,55 @@ export async function createBooking(formData) {
   }
 }
 
+export async function createReview(formData) {
+  const { carId, customerId, rating, comment } = formData;
+
+  if (!carId || !customerId)
+    throw new Error("Car ID and Customer ID are required.");
+  if (!rating || rating < 1 || rating > 5)
+    throw new Error("Rating must be a number between 1 and 5.");
+  if (!comment || comment.trim().length === 0)
+    throw new Error("Comment cannot be empty.");
+
+  // Optional: Check if customer has already reviewed this car
+  const { data: existingReview } = await supabase
+    .from("reviews")
+    .select("id")
+    .eq("carId", carId)
+    .eq("customerId", customerId)
+    .single();
+
+  if (existingReview) {
+    throw new Error("You have already reviewed this car.");
+  }
+
+  // Generate new review ID
+  const { data: last } = await supabase
+    .from("reviews")
+    .select("id")
+    .order("id", { ascending: false })
+    .limit(1);
+  const newId = last?.[0]?.id ? last[0].id + 1 : 1;
+
+  const { data, error } = await supabase.from("reviews").insert([
+    {
+      id: newId,
+      carId,
+      customerId,
+      rating,
+      comment,
+      created_at: new Date().toISOString(),
+    },
+  ]);
+
+  if (error) {
+    console.error("Create review error:", error);
+    throw new Error(error.message || "Failed to create review.");
+  }
+
+  return data?.[0];
+}
+
 export async function signInAction() {
   await signIn("google", {
     redirectTo: "/cars",
