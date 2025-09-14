@@ -3,7 +3,6 @@ import Image from "next/image";
 function CarDetails({ car }) {
   return (
     <div className="max-w-6xl mx-auto bg-brand-800 shadow-lg rounded-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2">
-      {/* Car Image */}
       <div className="relative w-full h-64 sm:h-80 md:h-auto md:min-h-[400px]">
         <Image
           src={car.image}
@@ -14,7 +13,6 @@ function CarDetails({ car }) {
         />
       </div>
 
-      {/* Car Info */}
       <div className="p-6 sm:p-8 flex flex-col justify-between">
         <div>
           <h1 className="text-2xl sm:text-3xl font-bold text-accent-400 mb-2">
@@ -60,7 +58,6 @@ function CarDetails({ car }) {
           </div>
         </div>
 
-        {/* Optional Book Button */}
         {/* <div className="mt-4 sm:mt-6">
           <button
             disabled={car.availability !== "Available"}

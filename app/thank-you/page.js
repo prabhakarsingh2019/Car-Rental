@@ -2,6 +2,10 @@ import { redirect } from "next/navigation";
 import { auth } from "../_lib/auth";
 import { getRentalById } from "../_lib/data-storage";
 
+export const metadata = {
+  title: "Thank You",
+};
+
 export default async function ThankYouPage({ searchParams }) {
   const session = await auth();
   const { bookingId } = await searchParams;

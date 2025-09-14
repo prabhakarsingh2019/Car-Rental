@@ -11,6 +11,10 @@ import CarReservationForm from "@/app/_components/CarReservationForm";
 import { auth } from "@/app/_lib/auth";
 import CarReviewForm from "@/app/_components/Reviews/CarReviewForm";
 
+export const metadata = {
+  title: "Car Details",
+};
+
 async function Page({ params }) {
   const { carId } = await params;
   const session = await auth();

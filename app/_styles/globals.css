@@ -75,3 +75,37 @@
     transform: translateX(100%);
   }
 }
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme("colors.brand.900");
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme("colors.accent.500");
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme("colors.accent.400");
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: theme("colors.accent.500") theme("colors.brand.950");
+}

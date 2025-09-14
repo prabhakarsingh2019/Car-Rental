@@ -1,7 +1,10 @@
 import { getAllCars } from "../_lib/data-storage";
 import CarsList from "../_components/cars/CarsList";
 import CarFilters from "../_components/CarFilters";
-
+export const metadata = {
+  title: "Available Cars",
+};
+export const revalidate = 0;
 export default async function Page() {
   const cars = await getAllCars();
 

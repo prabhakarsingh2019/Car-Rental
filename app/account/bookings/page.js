@@ -1,7 +1,9 @@
 import BookingList from "@/app/_components/Booking/BookingList";
 import { auth } from "@/app/_lib/auth";
 import { getBookingByUser } from "@/app/_lib/data-storage";
-
+export const metadata = {
+  title: "My Bookings",
+};
 async function page() {
   const session = await auth();
   const customerBookings = await getBookingByUser(session.user.customerId);

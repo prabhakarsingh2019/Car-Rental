@@ -156,10 +156,23 @@ export async function createReview(formData) {
   return data?.[0];
 }
 
-export async function signInAction() {
-  await signIn("google", {
+export async function signInGoogleAction() {
+  return await signIn("google", {
     redirectTo: "/cars",
   });
+}
+
+export async function signInAction(provider, formData) {
+  if (provider === "credentials") {
+    const email = formData?.email;
+    const password = formData?.password;
+
+    return await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    });
+  }
 }
 
 export async function signOutAction() {

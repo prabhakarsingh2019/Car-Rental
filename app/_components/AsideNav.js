@@ -8,7 +8,7 @@ import { Menu, X } from "lucide-react";
 const navItems = [
   { name: "Profile", href: "/account" },
   { name: "My Bookings", href: "/account/bookings" },
-  { name: "Update Profile", href: "/account/update" },
+  // { name: "Update Profile", href: "/account/update" },
 ];
 
 export default function AsideNav({ children }) {
@@ -17,7 +17,7 @@ export default function AsideNav({ children }) {
 
   return (
     <>
-      <div className="sm:hidden md:hidden bg-brand-800 px-4 py-3 border-b border-brand-700">
+      <div className="sm:hidden  bg-brand-800 px-4 py-3 border-b border-brand-700">
         <button
           onClick={() => setOpen(!open)}
           className="text-brand-50 focus:outline-none"

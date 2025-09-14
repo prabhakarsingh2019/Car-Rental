@@ -3,6 +3,7 @@ import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import "@/app/_styles/globals.css";
 import { ToastContainer } from "react-toastify";
+import NextTopLoader from "nextjs-toploader";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -11,7 +12,10 @@ const playfair = Playfair_Display({
 const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600"] });
 
 export const metadata = {
-  title: "Luxury Car Rentals",
+  title: {
+    default: "LuxDrive",
+    template: "LuxDrive | %s ",
+  },
   description: "Premium car rental service with modern web design",
 };
 
@@ -21,6 +25,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${playfair.className} ${inter.className} bg-brand-900 text-brand-100`}
       >
+        <NextTopLoader color="#fbbf24" />
         <ToastContainer position="top-center" autoClose={3000} />
         <Header />
 
